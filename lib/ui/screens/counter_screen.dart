@@ -22,16 +22,16 @@ class _CounterScreenState extends State<CounterScreen> {
         ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 170),
-            Text('Push the buttom to increase by 1'),
+            Text('You have pushed the button this many times:',),
             SizedBox(height: 20),
             ElevatedButton(
-                onPressed:_increaseCounter,
-                child: Text('Increment Counter'),
+              onPressed: _increaseCounter,
+              child: Text('Increment Counter'),
             ),
-            SizedBox(height: 30),
-            Text('$_counter'),
+            SizedBox(height: 20,),
+            Text('$_counter',),
           ],
         ),
       ),
