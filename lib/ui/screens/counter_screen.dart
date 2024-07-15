@@ -18,7 +18,10 @@ class _CounterScreenState extends State<CounterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Counter'),
+          title: Text(
+              'Counter',
+            textAlign: TextAlign.center,
+          ),
         ),
       body: Center(
         child: Column(

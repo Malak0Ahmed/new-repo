@@ -41,12 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
     getProductData();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Products'),
+        title: Text(
+            'Products',
+          textAlign: TextAlign.center,
+        ),
       ),
       body: GridView.builder(
         itemCount: mylist.length,
@@ -56,54 +58,70 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           return Card(
             child:Container(
-              height: 200,
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(10),
+
             ),
             padding: const EdgeInsets.all(8.0),
-
+              constraints: BoxConstraints(
+                maxHeight: 200, // Set the maximum height for the card
+              ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
+
               children: [
                 mylist[index].imageURL != null
                     ? Image.network(
+                  height: 70,
                   mylist[index].imageURL!,
                   width: double.infinity,
-                  height: 100,
-                  fit: BoxFit.fitHeight,
+                  fit:BoxFit.contain,
                 )
                     : Image.asset(
                   'assets/img.jpg',
                   width: double.infinity,
-                  height: 100,
                   fit: BoxFit.cover,
                 ),
-                Align(
-                  alignment: Alignment.center,
+                Padding(
+                  padding: EdgeInsets.all(4.0),
                   child: Text(
                     'name: ${mylist[index].name ?? 'no data'}',
+                    maxLines: 1,
                     style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.bold
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Align(
-                  alignment: Alignment.center,
+                Padding(
+                  padding: EdgeInsets.all(1.0),
                   child: Text(
                     'description: ${mylist[index].description ?? 'no data'}',
                     maxLines: 2,
                     style: TextStyle(fontSize: 14),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'price: ${mylist[index].price ?? 'no data'}',
+                  child: Row(
+                    children: [
+                  Text(
+                  'price: ${mylist[index].price ?? 'no data'}',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
+                      SizedBox(width: 50,),
+                      Icon(
+                          Icons.shop,
+                        size: 22,
+                        color: Colors.deepPurple.shade600,
+                        
+                      ),
+                    ],
+                  ),
+
                 ),
               ],
             ),
